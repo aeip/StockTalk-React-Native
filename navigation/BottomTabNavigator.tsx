@@ -5,9 +5,9 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import StocksScreen from '../screens/StocksScreen';
+import SearchScreen from '../screens/SearchScreen';
+import { BottomTabParamList, StocksParamList, SearchParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,18 +16,18 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Stocks"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Stocks"
+        component={StocksNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Search"
+        component={SearchNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -44,30 +44,30 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const StocksStack = createStackNavigator<StocksParamList>();
 
-function TabOneNavigator() {
+function StocksNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <StocksStack.Navigator>
+      <StocksStack.Screen
+        name="StocksScreen"
+        component={StocksScreen}
+        options={{ headerTitle: 'Stocks' }}
       />
-    </TabOneStack.Navigator>
+    </StocksStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const SearchStack = createStackNavigator<SearchParamList>();
 
-function TabTwoNavigator() {
+function SearchNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <SearchStack.Navigator>
+      <SearchStack.Screen
+        name="SearchScreen"
+        component={SearchScreen}
+        options={{ headerTitle: 'Search' }}
       />
-    </TabTwoStack.Navigator>
+    </SearchStack.Navigator>
   );
 }
